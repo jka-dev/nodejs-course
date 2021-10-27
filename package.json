@@ -1,0 +1,9 @@
+{
+    "name": "nodejs-course",
+    "version": "1.0.0",
+    "description": "Lohika nodejs course",
+    "main": "./src/app.js",
+    "scripts": {
+        "start": "node ./src/app.js -noforcemaccel -noforcemparams -noforcemspd -novid -nojoy"
+    }
+}
