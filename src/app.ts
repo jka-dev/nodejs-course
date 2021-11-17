@@ -1,7 +1,6 @@
 import express from 'express';
 import logger from './logger';
 import { config } from './config';
-import { exceptions } from 'winston';
 
 const app = express();
 
@@ -13,7 +12,7 @@ app.use((req: any, res: any, next: (arg?: any) => void) => {
 });
 
 app.get("/", (req, res) => {
-    Promise.reject(new Error('fake error')); 
+    //Promise.reject(new Error('fake error')); 
     logger.info({
       url: req.url,
       params: req.params,
@@ -29,7 +28,7 @@ app.post("/", (req, res) => {
       params: req.params,
       message: "Post request",
     });
-  
+
     const body = req.body;
     res.send(body);
   });
@@ -39,9 +38,9 @@ app.listen(config.APP_PORT, () => {
 });
 
 process.on('uncaughtException', (err, origin) => {
-    logger.error({ message: "uncaughtException", origin });
+    logger.error({ message: "uncaughtException", err, origin });
 });
-  
+
 process.on('unhandledRejection', (reason, promise) => {
-    logger.error({ message: "unhandledRejection", promise });
+    logger.error({ message: "unhandledRejection", reason, promise });
 });

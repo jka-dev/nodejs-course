@@ -8,3 +8,15 @@
 {"level":"error","message":"unhandledRejection","promise":{},"service":"user-service"}
 {"level":"info","message":"Get request","params":{},"service":"user-service","url":"/"}
 {"level":"error","message":"unhandledRejection","promise":{},"service":"user-service"}
+{"level":"info","message":"Server is listening on port 8888. Env is -noforcemaccel,-noforcemparams,-noforcemspd,-novid,-nojoy","service":"user-service"}
+{"level":"info","message":"Get request","params":{},"service":"user-service","url":"/"}
+{"level":"error","message":"unhandledRejection","promise":{},"reason":{},"service":"user-service"}
+{"level":"info","message":"Get request","params":{},"service":"user-service","url":"/"}
+{"level":"error","message":"unhandledRejection","promise":{},"reason":{},"service":"user-service"}
+{"level":"info","message":"Server is listening on port 8888. Env is -noforcemaccel,-noforcemparams,-noforcemspd,-novid,-nojoy","service":"user-service"}
+{"level":"info","message":"Get request","params":{},"service":"user-service","url":"/"}
+{"level":"error","message":"unhandledRejection","reason":{},"service":"user-service"}
+{"level":"info","message":"Server is listening on port 8888. Env is -noforcemaccel,-noforcemparams,-noforcemspd,-novid,-nojoy","service":"user-service"}
+{"level":"info","message":"Server is listening on port 8888. Env is -noforcemaccel,-noforcemparams,-noforcemspd,-novid,-nojoy","service":"user-service"}
+{"level":"info","message":"Server is listening on port 8888. Env is -noforcemaccel,-noforcemparams,-noforcemspd,-novid,-nojoy","service":"user-service"}
+{"level":"info","message":"Get request","params":{},"service":"user-service","url":"/"}
