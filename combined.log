@@ -20,3 +20,27 @@
 {"level":"info","message":"Server is listening on port 8888. Env is -noforcemaccel,-noforcemparams,-noforcemspd,-novid,-nojoy","service":"user-service"}
 {"level":"info","message":"Server is listening on port 8888. Env is -noforcemaccel,-noforcemparams,-noforcemspd,-novid,-nojoy","service":"user-service"}
 {"level":"info","message":"Get request","params":{},"service":"user-service","url":"/"}
+{"level":"info","message":"Server is listening on port 8888. Env is -noforcemaccel,-noforcemparams,-noforcemspd,-novid,-nojoy","service":"user-service"}
+{"level":"info","message":"Request info","params":{},"service":"user-service","url":"/"}
+{"level":"info","message":"Request info","params":{},"service":"user-service","url":"/movies/"}
+{"level":"info","message":"Request info","params":{},"service":"user-service","url":"/movies/84b4e7bb-6bfd-4827-97a6-dace327efaf9"}
+{"level":"info","message":"Request info","params":{},"service":"user-service","url":"/movies/84b4e7bb-6bfd-4827-97a6-dace327efaf9"}
+{"level":"info","message":"Request info","params":{},"service":"user-service","url":"/movies/84b4e7bb-6bfd-4827-97a6-dace327efaf9"}
+{"level":"info","message":"Request info","params":{},"service":"user-service","url":"/movies/84b4e7bb-6bfd-4827-97a6-dace327efaf9"}
+{"level":"info","message":"Request info","params":{},"service":"user-service","url":"/movies/84b4e7bb-6bfd-4827-"}
+{"level":"info","message":"Request info","params":{},"service":"user-service","url":"/movies/"}
+{"level":"info","message":"Request info","params":{},"service":"user-service","url":"/movies/3cb502ec-3b11-47bd-a403-3f78d3f89492"}
+{"level":"info","message":"Request info","params":{},"service":"user-service","url":"/movies/"}
+{"level":"info","message":"Request info","params":{},"service":"user-service","url":"/movies/7e52eda9-4fa9-4ce1-98f7-b37b985ed3bb"}
+{"level":"info","message":"Request info","params":{},"service":"user-service","url":"/movies"}
+{"level":"info","message":"Server is listening on port 8888. Env is -noforcemaccel,-noforcemparams,-noforcemspd,-novid,-nojoy","service":"user-service"}
+{"level":"info","message":"Request info","params":{},"service":"user-service","url":"/movies"}
+{"level":"info","message":"Server is listening on port 8888. Env is -noforcemaccel,-noforcemparams,-noforcemspd,-novid,-nojoy","service":"user-service"}
+{"level":"info","message":"Request info","params":{},"service":"user-service","url":"/movies"}
+{"level":"info","message":"Request info","params":{},"service":"user-service","url":"/movies"}
+{"level":"info","message":"Request info","params":{},"service":"user-service","url":"/movies"}
+{"level":"info","message":"Request info","params":{},"service":"user-service","url":"/movies"}
+{"level":"info","message":"Server is listening on port 8888. Env is -noforcemaccel,-noforcemparams,-noforcemspd,-novid,-nojoy","service":"user-service"}
+{"level":"info","message":"Request info","params":{},"service":"user-service","url":"/movies"}
+{"level":"info","message":"Request info","params":{},"service":"user-service","url":"/movies"}
+{"level":"info","message":"Request info","params":{},"service":"user-service","url":"/favicon.ico"}
