@@ -1,37 +1,42 @@
 import express from 'express';
 import logger from './logger';
 import { config } from './config';
+import { NextFunction, Request, Response } from "express";
+import router from './routes/movies';
 
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use((req: any, res: any, next: (arg?: any) => void) => {
+
+app.use((req: Request, res: Response, next: NextFunction) => {
+    logger.info({
+        url: req.url,
+        params: req.params,
+        message: "Request info",
+      });
+    next();
+});
+
+app.use((req: Request, res: Response, next: NextFunction) => {
   res.header('Content-Type', 'application/json');
   next();
 });
 
-app.get("/", (req, res) => {
-    //Promise.reject(new Error('fake error')); 
-    logger.info({
-      url: req.url,
-      params: req.params,
-      message: 'Get request',
-    });
+app.use('/movies', router);
 
-    res.send(JSON.stringify({body: 'Hello World!!! TS-EXPRESS'}));
-  });
+app.get("*", (req, res) => {
+    res.status(404).send('Not found');
+});
 
-app.post("/", (req, res) => {
-    logger.info({
-      url: req.url,
-      params: req.params,
-      message: "Post request",
-    });
-
-    const body = req.body;
-    res.send(body);
-  });
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+    logger.error('Error:', origin, err);
+    if (res.headersSent) {
+        return next(err)
+    }
+    res.status(500);
+    res.render('error', { error: err })
+});
 
 app.listen(config.APP_PORT, () => {
     logger.info(`Server is listening on port ${config.APP_PORT}. Env is ${config.ENV}`); 
