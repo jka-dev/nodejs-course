@@ -10,9 +10,10 @@ export class MoviesRepository {
         return moviesList.items[id];
     };
 
-    getAll = ({sortOrder, sortBy, limit, page} : { sortOrder: string, sortBy: string, limit: number, page: number}): Movie[] => {
+    getAll = ({filter, sortOrder, sortBy, limit, page} : {filter: string[], sortOrder: string, sortBy: string, limit: number, page: number}): Movie[] => {
         const movies = Object.values(moviesList.items);
-        const sortedMovies = sort(movies, sortOrder, sortBy);
+        const filteredMovies = movies.filter(movie => filter.includes(movie.id));
+        const sortedMovies = sort(filteredMovies.length > 0 ? filteredMovies : movies, sortOrder, sortBy);
         return paginate(sortedMovies, limit, page);
     };
 
