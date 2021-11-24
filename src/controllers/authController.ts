@@ -13,17 +13,17 @@ export class AuthController {
     this.service = service;
   }
 
-  register = (req: Request, res: Response) => {
+  register = async (req: Request, res: Response) => {
     try {
       const { email, password } = req.body;
-      const user = this.repository.get(email);
+      const user = await this.repository.get(email);
 
       if (user) {
         res.status(400).json({ error: "Email is already in use" });
         return;
       }
 
-      const userId = this.repository.add({ id: null, email, password, role: "user", favourites: [] });
+      const userId = await this.repository.add({ _id: null, email, password, role: "user", favourites: [] });
       res.status(201).json({ id: userId });
     } catch (error) {
       logger.error(error);
@@ -31,11 +31,11 @@ export class AuthController {
     }
   };
 
-  login = (req: Request, res: Response) => {
+  login = async (req: Request, res: Response) => {
     try {
       const { email, password } = req.body;
 
-      const user = this.repository.get(email);
+      const user = await this.repository.get(email);
 
       if (!user) {
         res.status(404).json({ error: 'User not found' });

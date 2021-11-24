@@ -9,6 +9,7 @@
         "start-server": "npx ts-node --files ./src/server.ts -noforcemaccel -noforcemparams -noforcemspd -novid -nojoy"
     },
     "devDependencies": {
+        "@types/mongoose": "^5.11.97",
         "@types/bcrypt": "^5.0.0",
         "@types/jsonwebtoken": "^8.5.6",
         "@types/express": "^4.17.13",
@@ -23,6 +24,7 @@
         "bcrypt": "^5.0.1",
         "express": "^4.17.1",
         "jsonwebtoken": "^8.5.1",
+        "mongoose": "^6.0.13",
         "uuid": "^8.3.2",
         "winston": "^3.3.3"
     }

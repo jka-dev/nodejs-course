@@ -1,42 +1,40 @@
 import { User } from "../types/user";
-import { usersList } from "./moqUsersData";
-import { v4 } from 'uuid';
 import bcrypt from "bcrypt";
+import UserModel from "./models/user";
 
 export class UsersRepository {
 
     constructor() {}
-    get = (email: string) : User | undefined => {
-        return usersList.items.find(item => item.email == email);
+    get = async (email: string) => {
+        return await UserModel.findOne({email});
     };
 
-    getById = (id: string) : User | undefined => {
-        return usersList.items.find(item => item.id == id);
+    getById = async (id: string) => {
+        return await UserModel.findOne({_id: id});
     };
 
-    getAll = (): User[] => {
-        return usersList.items;
-    };
+    add = async (user: User): Promise<string> => {
+        const currentUser = await this.get(user.email);
 
-    add = (user: User): string => {
-        console.log(usersList.items);
-        const currentUser = this.get(user.email);
         if(currentUser) {
             throw new Error('Email already exists');
         }
-        user.id = v4();
+
         user.password = bcrypt.hashSync(user.password, 7);
-        usersList.items.push(user);
-        usersList.total++;
-        return user.id;
+        const {_id} = await UserModel.create(user);
+
+        return _id;
     };
 
-    update = (user: User): void => {
-        const currentIndex = usersList.items.indexOf(user);
-        if (currentIndex == -1) {
-            throw new Error('Movie does not exist');
+    update = async (user: User) => {
+        const currentUser : any = await UserModel.findById(user._id);
+
+        if (!currentUser) {
+            throw new Error('User does not exist');
         }
-        usersList.items[currentIndex] = {...usersList.items[currentIndex], ...user};
+        Object.keys(user).forEach(key => currentUser[key] = user[key]);
+
+        await currentUser.save();
     }
 
 }

@@ -5,8 +5,10 @@ import { NextFunction, Request, Response } from "express";
 import rootRouter from './routes';
 import authRouter from './routes/auth';
 import { authorize } from './middleware/authorize';
+import {connect, connection} from "mongoose";
 
 const app = express();
+connect(config.CONNECTION_STRING);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -36,7 +38,7 @@ app.get("*", (req, res) => {
 });
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-    logger.error('Error:', origin, err);
+    logger.error('Error:', err);
     if (res.headersSent) {
         return next(err)
     }
@@ -44,9 +46,16 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
     res.render('error', { error: err })
 });
 
-app.listen(config.APP_PORT, () => {
-    logger.info(`Server is listening on port ${config.APP_PORT}. Env is ${config.ENV}`); 
+connection.on("error", (err) => {
+    logger.error(`Failed connecting to db: ${err.message}`);
 });
+
+connection.once("open", () => {
+    app.listen(config.APP_PORT, () => {
+        logger.info(`Server is listening on port ${config.APP_PORT}. Env is ${config.ENV}`); 
+    });
+});
+
 
 process.on('uncaughtException', (err, origin) => {
     logger.error({ message: "uncaughtException", err, origin });

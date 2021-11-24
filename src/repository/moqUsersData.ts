@@ -3,7 +3,7 @@ import { UsersList } from "../types/user";
 export const usersList: UsersList = {
     items: [
         {
-            "id": "007",
+            "_id": "007",
             "email": "admin@test.com",
             "password": "$2b$07$nGXWqZyc5k1H6tU0pGpCl.2Wh1E7RfIP3S9sLWlBs6EP9rMw8J.0e",
             "role": "admin",
