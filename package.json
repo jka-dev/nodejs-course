@@ -9,6 +9,7 @@
         "start-server": "npx ts-node --files ./src/server.ts -noforcemaccel -noforcemparams -noforcemspd -novid -nojoy"
     },
     "devDependencies": {
+        "@types/bcrypt": "^5.0.0",
         "@types/jsonwebtoken": "^8.5.6",
         "@types/express": "^4.17.13",
         "@types/node": "^16.11.6",
@@ -19,6 +20,7 @@
     },
     "dependencies": {
         "axios": "^0.24.0",
+        "bcrypt": "^5.0.1",
         "express": "^4.17.1",
         "jsonwebtoken": "^8.5.1",
         "uuid": "^8.3.2",

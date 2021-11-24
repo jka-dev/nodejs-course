@@ -2,6 +2,7 @@ import {Request, Response} from 'express';
 import logger from '../logger';
 import { UsersRepository } from '../repository/usersRepository';
 import { JwtService } from '../services/jwtService';
+import bcrypt from "bcrypt";
 
 export class AuthController {
   repository: UsersRepository;
@@ -41,7 +42,7 @@ export class AuthController {
         return;
       }
 
-      if (user.password !== password) {
+      if (bcrypt.compareSync(password, user.password)) {
         res.status(403).json({ error: 'Wrong password' });
       }
 

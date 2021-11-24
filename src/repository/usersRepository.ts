@@ -1,7 +1,7 @@
 import { User } from "../types/user";
 import { usersList } from "./moqUsersData";
 import { v4 } from 'uuid';
-import logger from "../logger";
+import bcrypt from "bcrypt";
 
 export class UsersRepository {
 
@@ -25,6 +25,7 @@ export class UsersRepository {
             throw new Error('Email already exists');
         }
         user.id = v4();
+        user.password = bcrypt.hashSync(user.password, 7);
         usersList.items.push(user);
         usersList.total++;
         return user.id;
