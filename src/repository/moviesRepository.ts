@@ -1,42 +1,43 @@
 import { Movie } from "../types/movie";
-import { paginate } from "../utils/paginate";
-import { sort } from "../utils/sort";
-import { moviesList } from "./moqMoviesData";
+import MovieModel from "./models/movie";
 
 export class MoviesRepository {
 
     constructor() {}
-    get = (id: string) => {
-        return moviesList.items[id];
+    get = async (id: string) => {
+        return await MovieModel.findById(id);
     };
 
-    getAll = ({filter, sortOrder, sortBy, limit, page} : {filter: string[], sortOrder: string, sortBy: string, limit: number, page: number}): Movie[] => {
-        const movies = Object.values(moviesList.items);
-        const filteredMovies = movies.filter(movie => filter.includes(movie.id));
-        const sortedMovies = sort(filteredMovies.length > 0 ? filteredMovies : movies, sortOrder, sortBy);
-        return paginate(sortedMovies, limit, page);
+    getAll = async ({filter, sortOrder, sortBy, limit, page} : {filter: string[], sortOrder: string, sortBy: string, limit: number, page: number}) => {
+        return await MovieModel.find(filter)
+            .sort({[sortBy]: sortOrder})
+            .limit(limit)
+            .skip(limit * (page - 1))
+            .exec();
     };
 
-    add = (movie: Movie): void => {
-        const currentMovie = this.get(movie.id);
+    add = async (movie: Movie) => {
+        const currentMovie = await MovieModel.findOne({Title: movie.Title});
+
         if(currentMovie) {
             throw new Error('Movie already exists');
         }
-        moviesList.items[movie.id] = {...movie};
-        moviesList.total++;
+        const {_id} = await MovieModel.create(movie);
+        return _id;
     };
 
-    update = (id: string, data: any): void => {
-        const currentMovie = this.get(id);
+    update = async (id: string, data: any) => {
+        const currentMovie = await MovieModel.findById(id);
         if (!currentMovie) {
             throw new Error('Movie does not exist');
         }
-        moviesList.items[id] = {...currentMovie, ...data};
+        Object.keys(data).forEach(key => currentMovie[key] = data[key]);
+
+        await currentMovie.save();
     }
 
-    remove = (id: string): void => {
-        delete moviesList.items[id];
-        moviesList.total--;
+    remove = async (id: string) => {
+        await MovieModel.findByIdAndRemove(id);
     }
 
 }

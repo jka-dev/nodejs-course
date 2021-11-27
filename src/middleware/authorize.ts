@@ -4,7 +4,7 @@ import { UsersRepository } from "../repository/usersRepository";
 import { JwtService } from "../services/jwtService";
 import { AuthRequest } from "../types/auth";
 
-export const authorize = (req: AuthRequest, res: Response, next: NextFunction) => {
+export const authorize = async (req: AuthRequest, res: Response, next: NextFunction) => {
   const { authorization } = req.headers;
 
   if (!authorization) {
@@ -23,7 +23,7 @@ export const authorize = (req: AuthRequest, res: Response, next: NextFunction) =
     return;
   }
 
-  req.user = usersRepository.getById(userPayload.payload.id);
+  req.user = await usersRepository.getById(userPayload.payload.id);
 
   next();
 };
