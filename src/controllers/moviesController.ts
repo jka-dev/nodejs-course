@@ -3,6 +3,7 @@ import { MoviesRepository } from '../repository/moviesRepository';
 import { MovieService } from '../services/moviesService';
 import { Movie, MovieQuery } from '../types/movie';
 import { v4 } from 'uuid';
+import { AuthRequest } from '../types/auth';
 
 export class MoviesController {
   repository: MoviesRepository;
@@ -13,14 +14,17 @@ export class MoviesController {
       this.service = service;
   }
 
-  getAll = (req: Request, res: Response) => {
+  getAll = (req: AuthRequest, res: Response) => {
     const {
       sortOrder = "asc",
       sortBy = "title",
       limit = 10,
       page = 1,
     } = req.query;
+
+    const filter = req.user ? req.user.favourites : [];
     const movies = this.repository.getAll({
+      filter,
       sortOrder,
       sortBy,
       limit,

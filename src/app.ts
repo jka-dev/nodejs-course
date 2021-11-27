@@ -2,7 +2,9 @@ import express from 'express';
 import logger from './logger';
 import { config } from './config';
 import { NextFunction, Request, Response } from "express";
-import router from './routes/movies';
+import rootRouter from './routes';
+import authRouter from './routes/auth';
+import { authorize } from './middleware/authorize';
 
 const app = express();
 
@@ -23,7 +25,11 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-app.use('/movies', router);
+app.use('/auth', authRouter);
+
+app.use(authorize);
+
+app.use('/', rootRouter);
 
 app.get("*", (req, res) => {
     res.status(404).send('Not found');

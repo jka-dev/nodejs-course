@@ -1,4 +1,5 @@
 export interface MovieQuery {
+    filter: string[];
     sortOrder: string;
     sortBy: string;
     limit: number;
